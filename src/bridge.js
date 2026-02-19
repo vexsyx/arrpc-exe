@@ -1,14 +1,15 @@
 const rgb = (r, g, b, msg) => `\x1b[38;2;${r};${g};${b}m${msg}\x1b[0m`;
 const log = (...args) => console.log(`[${rgb(88, 101, 242, 'arRPC')} > ${rgb(87, 242, 135, 'bridge')}]`, ...args);
 
-import { WebSocketServer } from 'ws';
+const { WebSocketServer } = require('ws');
 
 // basic bridge to pass info onto webapp
 let lastMsg = {};
-export const send = msg => {
+function send(msg) {
   lastMsg[msg.socketId] = msg;
   wss.clients.forEach(x => x.send(JSON.stringify(msg)));
-};
+}
+module.exports = { send };
 
 let port = 1337;
 if (process.env.ARRPC_BRIDGE_PORT) {

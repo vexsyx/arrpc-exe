@@ -1,19 +1,18 @@
 const rgb = (r, g, b, msg) => `\x1b[38;2;${r};${g};${b}m${msg}\x1b[0m`;
 const log = (...args) => console.log(`[${rgb(88, 101, 242, 'arRPC')} > ${rgb(237, 66, 69, 'process')}]`, ...args);
 
-import fs from 'node:fs';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
+const fs = require('fs');
+const { join } = require('path');
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+// CJS environment provides __dirname automatically
 const DetectableDB = JSON.parse(fs.readFileSync(join(__dirname, 'detectable.json'), 'utf8'));
 
-import * as Natives from './native/index.js';
+const Natives = require('./native/index.js');
 const Native = Natives[process.platform];
 
 
 const timestamps = {}, names = {}, pids = {};
-export default class ProcessServer {
+class ProcessServer {
   constructor(handlers) {
     if (!Native) return; // log('unsupported platform:', process.platform);
 
@@ -106,3 +105,5 @@ export default class ProcessServer {
     // process.stdout.write(`\r${' '.repeat(100)}\r[${rgb(88, 101, 242, 'arRPC')} > ${rgb(237, 66, 69, 'process')}] scanned (took ${(performance.now() - startTime).toFixed(2)}ms)`);
   }
 }
+
+module.exports = ProcessServer;

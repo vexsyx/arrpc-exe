@@ -1,11 +1,11 @@
 const rgb = (r, g, b, msg) => `\x1b[38;2;${r};${g};${b}m${msg}\x1b[0m`;
 const log = (...args) => console.log(`[${rgb(88, 101, 242, 'arRPC')} > ${rgb(254, 231, 92, 'ipc')}]`, ...args);
 
-import { join } from 'path';
-import { platform, env } from 'process';
-import { unlinkSync } from 'fs';
+const { join } = require('path');
+const { platform, env } = require('process');
+const { unlinkSync } = require('fs');
 
-import { createServer, createConnection } from 'net';
+const { createServer, createConnection } = require('net');
 
 const SOCKET_PATH = platform === 'win32' ? '\\\\?\\pipe\\discord-ipc'
   : join(env.XDG_RUNTIME_DIR || env.TMPDIR || env.TMP || env.TEMP || '/tmp', 'discord-ipc');
@@ -153,7 +153,7 @@ const getAvailableSocket = async (tries = 0) => {
   return getAvailableSocket(tries + 1);
 };
 
-export default class IPCServer {
+class IPCServer {
   constructor(handers) { return new Promise(async res => {
     this.handlers = handers;
 
@@ -249,3 +249,5 @@ export default class IPCServer {
     this.handlers.message(socket, msg);
   }
 }
+
+module.exports = IPCServer;

@@ -1,2 +1,4 @@
-export * as win32 from './win32.js';
-export * as linux from './linux.js';
+module.exports = {
+  win32: require('./win32.js'),
+  linux: require('./linux.js')
+};

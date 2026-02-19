@@ -5,8 +5,8 @@ const log = (...args) => console.log(`[${rgb(88, 101, 242, 'arRPC')}]`, ...args)
 
 log('arRPC v3.6.0');
 
-import * as Bridge from './bridge.js';
-import Server from './server.js';
+const Bridge = require('./bridge.js');
+const Server = require('./server.js');
 
 (async () => {
   const server = await new Server();

@@ -8,7 +8,7 @@
   <a href="https://github.com/OpenAsar/arrpc"><img alt="OG Repo" src="https://img.shields.io/badge/Forked From-OpenAsar/arrpc-blue.svg"></a>
   <br>
   <a href="https://github.com/vexsyx/arrpc-exe/releases/latest"><img alt="Latest Release" src="https://img.shields.io/github/v/release/vexsyx/arrpc-exe?label=Latest%20Release"></a>
-  <a href="https://github.com/vexsyx/arrpc-exe"><img alt="Downloads" src="https://img.shields.io/github/downloads/vexsyx/arrpc-exe/total.svg?label=Total%20Downloads"></a>
+  <a href="https://github.com/vexsyx/arrpc-exe"><img alt="Downloads" src="https://img.shields.io/github/downloads/vexsyx/arrpc-exe/total.svg?label=Total%20Downloads&color=blue"></a>
 </div>
 
 # arRPC (fork)

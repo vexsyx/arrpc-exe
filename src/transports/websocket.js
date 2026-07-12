@@ -63,9 +63,8 @@ class WSServer {
 
     if (process.env.ARRPC_DEBUG) log(`new connection! origin:`, origin, JSON.parse(JSON.stringify(params)));
 
-    if (origin !== '' && ![ 'https://discord.com', 'https://ptb.discord.com', 'https://canary.discord.com' ].includes(origin)) {
+    if (origin !== '' && origin !== 'file://' && origin !== 'null' && ![ 'https://discord.com', 'https://ptb.discord.com', 'https://canary.discord.com' ].includes(origin)) {
       log('disallowed origin', origin);
-
       socket.close();
       return;
     }
